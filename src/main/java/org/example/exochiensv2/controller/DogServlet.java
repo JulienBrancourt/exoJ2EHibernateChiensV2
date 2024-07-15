@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.exochiensv2.model.Dog;
+import org.example.exochiensv2.service.DogService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,12 +17,12 @@ import java.util.List;
 @WebServlet(name = "dogservlet", value = "/dog/*")
 public class DogServlet extends HttpServlet {
     private List<Dog> dogs;
-//    private DogService dogService;
+    private DogService dogService;
 
     @Override
     public void init() throws ServletException {
         dogs = new ArrayList<Dog>();
-//        dogService = new DogService();
+        dogService = new DogService();
     }
 
     @Override
@@ -53,18 +54,18 @@ public class DogServlet extends HttpServlet {
         String breed = req.getParameter("breed");
         LocalDate dateOfBirth = LocalDate.parse(req.getParameter("dateOfBirth"));
 //j'ai retiré ces 2 lignes pour hibernate !
-        Dog dog = new Dog(id, name, breed, dateOfBirth);
-        dogs.add(dog);
-//        dogService.create(name, breed, dateOfBirth);
+//        Dog dog = new Dog(id, name, breed, dateOfBirth);
+//        dogs.add(dog);
+        dogService.create(name, breed, dateOfBirth);
 
-        req.setAttribute("dogs", dogs);
-//        req.setAttribute("dogs", dogService.findAll());
+//        req.setAttribute("dogs", dogs);
+        req.setAttribute("dogs", dogService.findAll());
         req.getRequestDispatcher("/pages/list.jsp").forward(req, resp);
     }
 
     protected void showAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("dogs", dogs);
-//        req.setAttribute("dogs", dogService.findAll());
+//        req.setAttribute("dogs", dogs);
+        req.setAttribute("dogs", dogService.findAll());
         req.getRequestDispatcher("/pages/list.jsp").forward(req, resp);
     }
 
@@ -76,8 +77,8 @@ public class DogServlet extends HttpServlet {
         String idStr = req.getParameter("id");
 
         Integer id = Integer.parseInt(idStr);
-        Dog dog = findDogById(id);
-//        Dog dog = dogService.findById(id);
+//        Dog dog = findDogById(id);
+        Dog dog = dogService.findById(id);
         req.setAttribute("id", dog.getId());
         req.setAttribute("name", dog.getName());
         req.setAttribute("breed", dog.getBreed());

@@ -64,7 +64,7 @@ public class Dog {
         this.dateOfBirth = dateOfBirth;
     }
 
-//    public String toString() {
-//        return "Dog{id=" + this.id + ", name='" + this.name + "', breed='" + this.breed + "', dateOfBirth=" + this.dateOfBirth + "}";
-//    }
+    public String toString() {
+        return "Dog{id=" + this.id + ", name='" + this.name + "', breed='" + this.breed + "', dateOfBirth=" + this.dateOfBirth + "}";
+    }
 }
