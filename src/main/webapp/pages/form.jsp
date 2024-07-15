@@ -28,10 +28,10 @@
 
       <form action="${pageContext.request.contextPath}/dog/add" method="post" class="bg-dark text-white">
         <fieldset>
-          <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="id" name="id" placeholder="id">
-            <label for="id" class="form-label text-secondary">ID</label>
-          </div>
+<%--          <div class="form-floating mb-3">--%>
+<%--            <input type="number" class="form-control" id="id" name="id" placeholder="id">--%>
+<%--            <label for="id" class="form-label text-secondary">ID</label>--%>
+<%--          </div>--%>
           <div class="form-floating mb-3">
             <input type="text" class="form-control" id="nom" name="name"
                    placeholder="Nom">
