@@ -8,14 +8,13 @@ public class SessionfactorySingleton {
     private static StandardServiceRegistry registry;
     private static SessionFactory sessionFactory;
 
-    //constructeur en privé pour être sur d'avoir une seule instance de session factory crée
+    //constructeur en privé pour être sûr d'avoir une seule instance de session factory crée
     private SessionfactorySingleton (){
         registry = new StandardServiceRegistryBuilder().configure().build();
         sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     }
 
-
-    //methode nous permettant de venir recupérer toujours la meme instance de notre session factory
+    //méthode permettant de venir récupérer toujours la meme instance de notre session factory
     public static synchronized SessionFactory getSessionFactory (){
         if(sessionFactory == null){
             new SessionfactorySingleton();

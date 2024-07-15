@@ -8,12 +8,12 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 
 public class DogRepository {
-    //variables globales dans notre repository accesibles par toute les méthodes du repository
+    //variables globales dans notre repository accessibles par toutes les méthodes du repository
     private SessionFactory sessionFactory;
     private Session session;
 
     public DogRepository() {
-        //a la creation de notre repository on vient recupérer l'instance
+        //à la creation du repository, on vient récupérer l'instance
         // de SessionFactory pour pouvoir créer des sessions dans notre repository
         sessionFactory = SessionfactorySingleton.getSessionFactory();
     }

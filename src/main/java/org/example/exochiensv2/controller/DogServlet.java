@@ -50,19 +50,17 @@ public class DogServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Récupération et validation de l'ID
-        String idStr = req.getParameter("id");
-        Integer id = null;
-        if (idStr != null && !idStr.isEmpty()) {
-            try {
-                id = Integer.parseInt(idStr);
-            } catch (NumberFormatException e) {
-                // Gérer l'exception, par exemple en définissant un message d'erreur
-                e.printStackTrace();
-                // Vous pouvez renvoyer une réponse avec un message d'erreur
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid ID format");
-                return;
-            }
-        }
+//        String idStr = req.getParameter("id");
+//        Integer id = null;
+//        if (idStr != null && !idStr.isEmpty()) {
+//            try {
+//                id = Integer.parseInt(idStr);
+//            } catch (NumberFormatException e) {
+//                e.printStackTrace();
+//                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid ID format");
+//                return;
+//            }
+//        }
         String name = req.getParameter("name");
         String breed = req.getParameter("breed");
         LocalDate dateOfBirth = LocalDate.parse(req.getParameter("dateOfBirth"));
@@ -72,6 +70,7 @@ public class DogServlet extends HttpServlet {
         dogService.create(name, breed, dateOfBirth);
 
 //        req.setAttribute("dogs", dogs);
+        //on ajoute un attribut à la requête : le résultat de findAll
         req.setAttribute("dogs", dogService.findAll());
         req.getRequestDispatcher("/pages/list.jsp").forward(req, resp);
     }
